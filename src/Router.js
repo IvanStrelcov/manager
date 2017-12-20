@@ -19,7 +19,7 @@ const RouterComponent = () => {
             title="Employees"
             renderBackButton={()=>(null)}
             rightTitle="Add"
-            onRight={() => Actions.employeeCreate()}
+            onRight={() => Actions.employeeCreate({ type: 'replace' })}
             initial
             />
           <Scene

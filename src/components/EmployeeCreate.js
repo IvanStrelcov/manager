@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeCreate } from '../actions';
+import { employeeCreate, resetForm } from '../actions';
 import { CardSection, Card, Button, Spinner } from './common';
 import EmployeeForm from './EmployeeForm';
 
 class EmployeeCreate extends Component {
+  componentWillMount() {
+    this.props.resetForm();
+  }
+
   onSubmit() {
     const { name, phone, shift } = this.props;
     this.props.employeeCreate({ name, phone, shift });
@@ -35,7 +39,6 @@ class EmployeeCreate extends Component {
   }
 
   render() {
-    console.log(this.props.employee)
     return (
       <Card>
         <EmployeeForm {...this.props} />
@@ -54,4 +57,4 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeCreate })(EmployeeCreate);
+export default connect(mapStateToProps, { employeeCreate, resetForm })(EmployeeCreate);
